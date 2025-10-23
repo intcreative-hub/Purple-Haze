@@ -1,29 +1,28 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, MapPin } from "lucide-react";
+import { Phone, MapPin, Star } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
-import SmokeRingsHero from "./SmokeRingsHero";
-import SmokeParticles from "./SmokeParticles";
+import SmokeVortex from "./SmokeVortex";
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.8,
+      duration: 0.6,
       ease: [0.6, 0.05, 0.01, 0.9],
     },
   },
@@ -40,102 +39,104 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-dark-bg via-dark-bg to-dark-card pt-20"
+      className="hero-premium relative flex min-h-screen items-center justify-center overflow-hidden pt-20"
     >
-      {/* Background glow effect */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -left-1/4 top-0 h-96 w-96 rounded-full bg-emerald/10 blur-3xl" />
-        <div className="absolute -right-1/4 bottom-0 h-96 w-96 rounded-full bg-purple/10 blur-3xl" />
+      {/* Background: Clean gradient */}
+      <div className="hero-background absolute inset-0 bg-gradient-to-br from-dark-bg via-card-bg to-darker-bg" />
+
+      {/* Smoke Vortex - Full Screen Background */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-45">
+        <div className="relative w-screen h-screen">
+          <SmokeVortex />
+        </div>
       </div>
 
-      <div className="container-width section-padding relative z-10 grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-        {/* Smoke Rings 3D Scene Column */}
+      {/* Centered Content */}
+      <div className="container-width section-padding relative z-10 flex flex-col items-center justify-center text-center">
         <motion.div
-          className="relative aspect-square w-full max-w-lg mx-auto lg:mx-0"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        >
-          <SmokeRingsHero />
-          <SmokeParticles />
-        </motion.div>
-
-        {/* Text Content Column */}
-        <motion.div
-          className="flex flex-col space-y-8"
+          className="hero-content flex flex-col space-y-6 max-w-4xl"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
+          {/* Hero Title - Centered */}
           <motion.div variants={itemVariants}>
-            <h1 className="text-5xl font-bold leading-tight tracking-tight text-light-text md:text-6xl lg:text-7xl">
-              <span className="gradient-text">PURPLE HAZE</span>
-              <br />
-              <span className="text-light-text/90">SMOKE SHOP</span>
+            <h1 className="font-brand hero-title text-6xl md:text-7xl lg:text-8xl leading-[1.1]">
+              <span className="text-primary-emerald">Purple</span>
+              <span className="text-cream"> Haze</span>
             </h1>
           </motion.div>
 
+          {/* Tagline */}
           <motion.p
-            className="text-xl text-light-text/70 md:text-2xl"
+            className="hero-tagline font-tagline text-primary-emerald text-lg md:text-xl"
             variants={itemVariants}
           >
-            {SITE_CONFIG.tagline}
+            Premium Selection | Local Expertise
           </motion.p>
 
+          {/* Description */}
+          <motion.p
+            className="hero-description text-xl md:text-2xl text-neutral-200 leading-relaxed max-w-2xl mx-auto"
+            variants={itemVariants}
+          >
+            Premium tobacco, vapes, CBD & accessories in Brunswick, Ohio
+          </motion.p>
+
+          {/* Real Customer Testimonial Quote */}
+          <motion.blockquote
+            className="hero-testimonial border-l-3 border-primary-emerald pl-6 py-4 my-6 max-w-2xl mx-auto text-left"
+            variants={itemVariants}
+          >
+            <div className="flex gap-1 mb-2 justify-center md:justify-start">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} size={16} className="fill-primary-emerald text-primary-emerald" />
+              ))}
+            </div>
+            <p className="text-neutral-200 italic text-lg leading-relaxed mb-2">
+              "Came in looking for premium vape, left with exactly what I needed. Staff really knows their stuff."
+            </p>
+            <footer className="text-primary-emerald text-sm font-medium">
+              — Jordan K., Oct 2024
+            </footer>
+          </motion.blockquote>
+
+          {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col gap-4 sm:flex-row"
+            className="hero-ctas flex flex-wrap justify-center gap-4 pt-4"
             variants={itemVariants}
           >
             <motion.button
               onClick={() => scrollToSection("#hours")}
-              className="group relative overflow-hidden rounded-lg bg-emerald px-8 py-4 text-lg font-semibold text-dark-bg transition-all hover:shadow-xl"
+              className="btn-primary bg-primary-emerald text-white px-8 py-4 rounded-lg font-semibold border-2 border-primary-emerald transition-all hover:bg-transparent hover:text-primary-emerald shadow-lg flex items-center gap-2"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                <MapPin size={20} />
-                Visit Us Now
-              </span>
-              <div className="absolute inset-0 bg-emerald-light opacity-0 transition-opacity group-hover:opacity-100" />
+              <MapPin size={20} />
+              Visit Us Now
             </motion.button>
 
             <motion.a
               href={`tel:${SITE_CONFIG.phone.replace(/\D/g, "")}`}
-              className="group relative overflow-hidden rounded-lg border-2 border-purple bg-transparent px-8 py-4 text-lg font-semibold text-light-text transition-all hover:bg-purple hover:shadow-xl"
+              className="btn-secondary bg-transparent text-primary-emerald px-8 py-4 rounded-lg font-semibold border-2 border-primary-emerald transition-all hover:bg-primary-emerald hover:text-white flex items-center gap-2"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                <Phone size={20} />
-                Call Now
-              </span>
-            </motion.a>
-          </motion.div>
-
-          <motion.div
-            className="flex flex-col space-y-2 pt-4 text-light-text/60"
-            variants={itemVariants}
-          >
-            <p className="flex items-center gap-2">
-              <MapPin size={18} className="text-emerald" />
-              {SITE_CONFIG.address}
-            </p>
-            <p className="flex items-center gap-2">
-              <Phone size={18} className="text-emerald" />
+              <Phone size={20} />
               {SITE_CONFIG.phone}
-            </p>
+            </motion.a>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <div className="flex flex-col items-center gap-2 text-light-text/40">
-          <span className="text-sm">Scroll to explore</span>
+        <div className="flex flex-col items-center gap-2 text-neutral-600">
+          <span className="text-sm font-medium">Scroll to explore</span>
           <svg
             className="h-6 w-6"
             fill="none"
