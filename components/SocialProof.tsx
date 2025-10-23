@@ -139,7 +139,7 @@ function TestimonialCard({ testimonial }: TestimonialCardProps) {
 
         {/* Quote */}
         <blockquote className="testimonial-quote text-sm text-neutral-200 italic leading-relaxed">
-          "{testimonial.text}"
+          &ldquo;{testimonial.text}&rdquo;
         </blockquote>
 
         {/* Optional: Product Mentioned */}

@@ -94,7 +94,7 @@ export default function Hero() {
               ))}
             </div>
             <p className="text-neutral-200 italic text-lg leading-relaxed mb-2">
-              "Came in looking for premium vape, left with exactly what I needed. Staff really knows their stuff."
+              &ldquo;Came in looking for premium vape, left with exactly what I needed. Staff really knows their stuff.&rdquo;
             </p>
             <footer className="text-primary-emerald text-sm font-medium">
               — Jordan K., Oct 2024
