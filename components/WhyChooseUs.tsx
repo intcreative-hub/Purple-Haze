@@ -100,6 +100,7 @@ function TiltValueCard({ prop }: TiltValueCardProps) {
     },
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const gestureHandlers = bind() as any;
 
   return (
