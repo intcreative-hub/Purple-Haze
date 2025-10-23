@@ -1,19 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
 import { Phone, MapPin } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
-
-// Dynamically import 3D scene to avoid SSR issues
-const Scene3D = dynamic(() => import("./Scene3D"), {
-  ssr: false,
-  loading: () => (
-    <div className="flex h-full w-full items-center justify-center">
-      <div className="h-32 w-32 animate-pulse rounded-lg bg-emerald/20" />
-    </div>
-  ),
-});
+import CSSCube from "./CSSCube";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -65,7 +55,7 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <Scene3D />
+          <CSSCube />
         </motion.div>
 
         {/* Text Content Column */}
