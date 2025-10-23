@@ -65,12 +65,12 @@ export default function HoursLocation() {
 
               <div className="space-y-3">
                 <div className="flex justify-between border-b border-light-text/10 pb-3">
-                  <span className="text-light-text/70">{BUSINESS_HOURS.weekday.days}</span>
-                  <span className="font-semibold text-emerald">{BUSINESS_HOURS.weekday.hours}</span>
+                  <span className="text-light-text/70">Monday - Saturday</span>
+                  <span className="font-semibold text-emerald">11:00 AM - 9:00 PM</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-light-text/70">{BUSINESS_HOURS.weekend.days}</span>
-                  <span className="font-semibold text-emerald">{BUSINESS_HOURS.weekend.hours}</span>
+                  <span className="text-light-text/70">Sunday</span>
+                  <span className="font-semibold text-emerald">12:00 PM - 8:00 PM</span>
                 </div>
               </div>
             </div>
