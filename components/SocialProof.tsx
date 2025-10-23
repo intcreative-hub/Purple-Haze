@@ -54,22 +54,29 @@ export default function SocialProof() {
           {TESTIMONIALS.map((testimonial) => (
             <motion.div
               key={testimonial.id}
-              className="group relative overflow-hidden rounded-xl border border-emerald/20 bg-dark-bg p-6 transition-all hover:border-emerald/50 hover:shadow-xl hover:shadow-emerald/10"
+              className="card-3d group relative overflow-hidden rounded-xl border border-emerald/20 bg-dark-bg p-6 transition-all hover:border-emerald/50 hover:shadow-xl hover:shadow-emerald-500/40"
               variants={cardVariants}
-              whileHover={{ y: -5 }}
+              whileHover={{ y: -8, rotateY: 3 }}
+              style={{
+                transformStyle: "preserve-3d",
+                perspective: "1000px",
+              }}
             >
               {/* Quote icon */}
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-emerald/10 text-emerald">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-emerald/10 text-emerald transition-all group-hover:scale-110 group-hover:rotate-3">
                 <Quote size={24} />
               </div>
 
-              {/* Star rating */}
+              {/* Star rating with glow animation */}
               <div className="mb-4 flex gap-1">
                 {[...Array(testimonial.rating)].map((_, i) => (
                   <Star
                     key={i}
                     size={18}
-                    className="fill-emerald text-emerald"
+                    className="fill-emerald text-emerald transition-all group-hover:animate-pulse"
+                    style={{
+                      animation: `starGlow 2s ease-in-out infinite ${i * 0.1}s`,
+                    }}
                   />
                 ))}
               </div>
@@ -86,6 +93,9 @@ export default function SocialProof() {
                 </p>
                 <p className="text-sm text-light-text/60">Verified Customer</p>
               </div>
+
+              {/* 3D depth glow effect */}
+              <div className="absolute inset-0 -z-10 rounded-xl bg-gradient-to-br from-emerald/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
             </motion.div>
           ))}
         </motion.div>

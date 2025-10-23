@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useGesture } from "@use-gesture/react";
+import { useRef } from "react";
 import { MapPin, ShieldCheck, DollarSign, Grid3x3 } from "lucide-react";
 import { VALUE_PROPS } from "@/lib/constants";
 
@@ -58,33 +60,71 @@ export default function WhyChooseUs() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {VALUE_PROPS.map((prop) => {
-            const Icon = iconMap[prop.icon as keyof typeof iconMap];
-            return (
-              <motion.div
-                key={prop.id}
-                className="group relative overflow-hidden rounded-xl border border-purple/20 bg-dark-bg p-6 transition-all hover:border-purple/50 hover:shadow-xl hover:shadow-purple/10"
-                variants={itemVariants}
-              >
-                <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-purple/5 blur-2xl transition-all group-hover:bg-purple/10" />
-
-                <div className="relative z-10 flex items-start gap-4">
-                  <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-lg bg-purple/10 text-purple transition-all group-hover:bg-purple group-hover:text-white">
-                    <Icon size={28} />
-                  </div>
-
-                  <div>
-                    <h3 className="mb-2 text-xl font-bold text-light-text">
-                      {prop.title}
-                    </h3>
-                    <p className="text-light-text/70">{prop.description}</p>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
+          {VALUE_PROPS.map((prop) => (
+            <TiltValueCard key={prop.id} prop={prop} />
+          ))}
         </motion.div>
       </div>
     </section>
+  );
+}
+
+interface TiltValueCardProps {
+  prop: {
+    id: string;
+    title: string;
+    description: string;
+    icon: string;
+  };
+}
+
+function TiltValueCard({ prop }: TiltValueCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const Icon = iconMap[prop.icon as keyof typeof iconMap];
+
+  const bind = useGesture({
+    onHover: ({ hovering }) => {
+      if (!cardRef.current) return;
+      if (!hovering) {
+        cardRef.current.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+      }
+    },
+    onMove: ({ xy: [x, y], hovering }) => {
+      if (!cardRef.current || !hovering) return;
+      const rect = cardRef.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const rotateX = (y - centerY) / 20;
+      const rotateY = -(x - centerX) / 20;
+      cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    },
+  });
+
+  return (
+    <motion.div
+      ref={cardRef}
+      {...bind()}
+      className="card-3d group relative overflow-hidden rounded-xl border border-purple/20 bg-dark-bg p-6 transition-all hover:border-purple/50 hover:shadow-xl hover:shadow-purple-500/30"
+      variants={itemVariants}
+      style={{
+        transformStyle: "preserve-3d",
+        transition: "transform 0.2s ease-out, box-shadow 0.3s ease",
+      }}
+    >
+      <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-purple/5 blur-2xl transition-all group-hover:bg-purple/10" />
+
+      <div className="relative z-10 flex items-start gap-4">
+        <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-lg bg-purple/10 text-purple transition-all group-hover:bg-purple group-hover:text-white">
+          <Icon size={28} />
+        </div>
+
+        <div>
+          <h3 className="mb-2 text-xl font-bold text-light-text">
+            {prop.title}
+          </h3>
+          <p className="text-light-text/70">{prop.description}</p>
+        </div>
+      </div>
+    </motion.div>
   );
 }

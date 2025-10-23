@@ -34,12 +34,27 @@ export default function FAQ() {
           {FAQ_ITEMS.map((item, index) => (
             <motion.div
               key={item.id}
-              className="overflow-hidden rounded-xl border border-purple/20 bg-dark-card transition-all hover:border-purple/50"
+              className="overflow-hidden rounded-xl border border-purple/20 bg-dark-card transition-all hover:border-purple/50 hover:shadow-lg hover:shadow-purple/20"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
+              style={{
+                transformStyle: "preserve-3d",
+              }}
             >
+              {/* Active accent line */}
+              {openId === item.id && (
+                <motion.div
+                  className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-emerald to-purple"
+                  initial={{ scaleY: 0 }}
+                  animate={{ scaleY: 1 }}
+                  exit={{ scaleY: 0 }}
+                  transition={{ duration: 0.3 }}
+                  style={{ originY: 0 }}
+                />
+              )}
+
               <button
                 onClick={() => toggleQuestion(item.id)}
                 className="flex w-full items-center justify-between p-6 text-left transition-colors hover:bg-dark-bg/50"
@@ -66,9 +81,15 @@ export default function FAQ() {
                 {openId === item.id && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
+                    animate={{
+                      height: "auto",
+                      opacity: 1,
+                    }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
+                    style={{
+                      animation: "accordionFold 0.3s ease-out",
+                    }}
                   >
                     <div className="border-t border-light-text/10 px-6 py-4">
                       <p className="text-light-text/70">{item.answer}</p>

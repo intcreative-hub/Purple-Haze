@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import { Phone, MapPin } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
-import CSSCube from "./CSSCube";
+import SmokeRingsHero from "./SmokeRingsHero";
+import SmokeParticles from "./SmokeParticles";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -48,14 +49,15 @@ export default function Hero() {
       </div>
 
       <div className="container-width section-padding relative z-10 grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-        {/* 3D Scene Column */}
+        {/* Smoke Rings 3D Scene Column */}
         <motion.div
           className="relative aspect-square w-full max-w-lg mx-auto lg:mx-0"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <CSSCube />
+          <SmokeRingsHero />
+          <SmokeParticles />
         </motion.div>
 
         {/* Text Content Column */}
