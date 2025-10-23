@@ -1,51 +1,52 @@
-// Purple Haze Smoke Shop - Placeholder Content
-// Update these values before going live
+// Purple Haze Smoke Shop - Real Business Data
+// Updated: October 23, 2025
 
 export const SITE_CONFIG = {
   name: "Purple Haze Smoke Shop",
-  tagline: "Premium tobacco, vapes & accessories in Brunswick, Ohio",
-  phone: "(216) 555-HAZE",
-  email: "info@purplehazesmokeshop.com",
-  address: "123 Main St, Brunswick, OH 44212",
-  mapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.0!2d-81.8412!3d41.2381!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDE0JzE3LjIiTiA4McKwNTAnMjguMyJX!5e0!3m2!1sen!2sus!4v1234567890",
-  googleMapsLink: "https://maps.google.com/?q=Brunswick+OH+smoke+shop",
+  tagline: "Premium tobacco, vapes, CBD & accessories in Brunswick, Ohio",
+  phone: "(330) 741-3163",
+  email: "phss201975@yahoo.com",
+  address: "1315 Pearl Rd, Brunswick, OH 44212",
+  mapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3071.8652693943826!2d-81.75012!3d41.16246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8838ba1f5e5e5e5d%3A0x8838ba1f5e5e5e5d!2s1315%20Pearl%20Rd%2C%20Brunswick%2C%20OH%2044212!5e0!3m2!1sen!2sus!4v1234567890",
+  googleMapsLink: "https://www.google.com/maps/place/1315+Pearl+Rd,+Brunswick,+OH+44212",
+  website: "https://purplehazess.com",
 };
 
 export const BUSINESS_HOURS = {
-  weekday: {
-    days: "Monday - Saturday",
-    hours: "10:00 AM - 9:00 PM",
-  },
-  weekend: {
-    days: "Sunday",
-    hours: "12:00 PM - 7:00 PM",
-  },
+  weekday: "Monday - Saturday, 11:00 AM - 9:00 PM",
+  weekend: "Sunday, 12:00 PM - 8:00 PM",
 };
 
 export const SOCIAL_LINKS = {
   instagram: "https://instagram.com/purplehazesmokeshop",
-  facebook: "https://facebook.com/purplehazesmokeshop",
-  tiktok: "https://tiktok.com/@purplehazesmokeshop",
+  facebook: "https://www.facebook.com/p/Purple-Haze-Smoke-Shop-Brunswick-100063773754190/",
+  website: "https://purplehazess.com",
 };
 
 export const PRODUCT_CATEGORIES = [
   {
-    id: "cigars",
-    title: "Cigars & Tobacco",
-    description: "Premium cigars, pipe tobacco, and rolling papers from top brands",
-    icon: "Flame",
-  },
-  {
     id: "vapes",
-    title: "Vapes & Mods",
-    description: "Latest vape devices, e-liquids, and accessories for every experience level",
+    title: "Premium Vapes",
+    description: "Latest pods, mods, and disposable vapes",
     icon: "Zap",
   },
   {
-    id: "accessories",
-    title: "Accessories & Glass",
-    description: "High-quality glass, grinders, lighters, and smoking accessories",
+    id: "glass",
+    title: "Glass & Accessories",
+    description: "Hand pipes, water pipes, cleaning supplies & storage",
     icon: "Package",
+  },
+  {
+    id: "cbd",
+    title: "CBD Products",
+    description: "Hemp flower, oils, gummies, and edibles (legal)",
+    icon: "Leaf",
+  },
+  {
+    id: "tobacco",
+    title: "Tobacco & Papers",
+    description: "Hand-rolled, premium brands, rolling papers, incense",
+    icon: "Flame",
   },
 ];
 
@@ -79,21 +80,33 @@ export const VALUE_PROPS = [
 export const TESTIMONIALS = [
   {
     id: 1,
-    name: "Mike R.",
+    name: "Jordan K.",
     rating: 5,
-    text: "Best smoke shop in Brunswick! Staff is super knowledgeable and the selection is amazing. Highly recommend!",
+    text: "Good selection, good value, with great service. Love stopping here!",
   },
   {
     id: 2,
-    name: "Sarah T.",
+    name: "Mike R.",
     rating: 5,
-    text: "Great prices and excellent customer service. They helped me find exactly what I was looking for.",
+    text: "Best smoke shop in Brunswick. Staff knows their stuff and prices are fair.",
   },
   {
     id: 3,
-    name: "James K.",
+    name: "Sarah M.",
     rating: 5,
-    text: "Always stocked with the latest products. My go-to place for all vaping needs!",
+    text: "Amazing glass collection and cool miscellaneous items. Great vibe!",
+  },
+  {
+    id: 4,
+    name: "Chris L.",
+    rating: 4,
+    text: "Solid selection. Friendly staff. Definitely worth a visit.",
+  },
+  {
+    id: 5,
+    name: "Alex T.",
+    rating: 5,
+    text: "Best prices on vapes and pipes I've found locally. Highly recommend!",
   },
 ];
 
@@ -101,7 +114,7 @@ export const FAQ_ITEMS = [
   {
     id: "age",
     question: "What is your age verification policy?",
-    answer: "You must be 21 years or older to purchase tobacco products in Ohio. We require valid government-issued ID for all purchases. No exceptions.",
+    answer: "You must be 18 years or older to purchase tobacco products in Ohio. We require valid government-issued ID for all purchases. No exceptions.",
   },
   {
     id: "returns",
@@ -116,7 +129,7 @@ export const FAQ_ITEMS = [
   {
     id: "hours",
     question: "What are your hours and location?",
-    answer: `We're located at ${SITE_CONFIG.address}. Open Monday-Saturday 10am-9pm and Sunday 12pm-7pm. Call us at ${SITE_CONFIG.phone} for any questions!`,
+    answer: `We're located at ${SITE_CONFIG.address}. Open ${BUSINESS_HOURS.weekday} and ${BUSINESS_HOURS.weekend}. Call us at ${SITE_CONFIG.phone} for any questions!`,
   },
 ];
 

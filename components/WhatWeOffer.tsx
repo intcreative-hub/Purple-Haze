@@ -1,13 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Flame, Zap, Package } from "lucide-react";
+import { Flame, Zap, Package, Leaf } from "lucide-react";
 import { PRODUCT_CATEGORIES } from "@/lib/constants";
 
 const iconMap = {
   Flame: Flame,
   Zap: Zap,
   Package: Package,
+  Leaf: Leaf,
 };
 
 const containerVariants = {
