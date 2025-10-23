@@ -100,18 +100,6 @@ export default function Footer() {
               >
                 <Facebook size={20} />
               </motion.a>
-
-              <motion.a
-                href={SOCIAL_LINKS.tiktok}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald/10 text-emerald transition-all hover:bg-emerald hover:text-white"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                aria-label="TikTok"
-              >
-                <Youtube size={20} />
-              </motion.a>
             </div>
 
             <p className="mt-6 text-sm text-light-text/60">
