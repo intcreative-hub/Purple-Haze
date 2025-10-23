@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: purple-haze-web
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      # Add your environment variables here
+      - NEXT_PUBLIC_PHONE=${NEXT_PUBLIC_PHONE:-(216) 555-HAZE}
+      - NEXT_PUBLIC_ADDRESS=${NEXT_PUBLIC_ADDRESS:-123 Main St, Brunswick, OH 44212}
+      - NEXT_PUBLIC_EMAIL=${NEXT_PUBLIC_EMAIL:-info@purplehazesmokeshop.com}
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - purple-haze-network
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  purple-haze-network:
+    driver: bridge
+
+# Optional: Add volumes if you need persistent data
+# volumes:
+#   app_data:
