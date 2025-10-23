@@ -100,10 +100,12 @@ function TiltValueCard({ prop }: TiltValueCardProps) {
     },
   });
 
+  const gestureHandlers = bind() as any;
+
   return (
     <motion.div
       ref={cardRef}
-      {...bind()}
+      {...gestureHandlers}
       className="card-3d group relative overflow-hidden rounded-xl border border-purple/20 bg-dark-bg p-6 transition-all hover:border-purple/50 hover:shadow-xl hover:shadow-purple-500/30"
       variants={itemVariants}
       style={{

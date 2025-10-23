@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Clock, MapPin, Phone, Navigation } from "lucide-react";
-import { SITE_CONFIG, BUSINESS_HOURS } from "@/lib/constants";
+import { SITE_CONFIG } from "@/lib/constants";
 
 export default function HoursLocation() {
   return (
